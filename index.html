@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hollow Knight: Silksong - Download Now</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0D0618;
+            color: #e2e8f0;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .font-title {
+            font-family: 'Cinzel', serif;
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(13, 6, 24, 0.85), rgba(28, 10, 40, 0.9)), url('https://images.hdqwalls.com/download/hollow-knight-silksong-2022-5k-r0-1920x1080.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .btn-primary {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 20px rgba(178, 34, 34, 0.6);
+            background: linear-gradient(135deg, #B22222 0%, #8B0000 100%);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(178, 34, 34, 0.8);
+        }
+
+        .glass-effect {
+            background: rgba(13, 6, 24, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(178, 34, 34, 0.3);
+        }
+
+        .gallery-img {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            transform: translateZ(0);
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.06) rotate(1deg);
+            box-shadow: 0 15px 35px rgba(178, 34, 34, 0.4);
+        }
+
+        .feature-card {
+            transition: all 0.5s ease;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            transform: translateY(30px);
+            opacity: 0;
+            background: linear-gradient(145deg, #1a0b2e 0%, #220b3a 100%);
+        }
+
+        .feature-card.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(178, 34, 34, 0.25);
+            border-color: rgba(178, 34, 34, 0.6);
+        }
+
+        .platform-btn {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateY(20px);
+            opacity: 0;
+            background: linear-gradient(145deg, #1a0b2e 0%, #220b3a 100%);
+            border: 1px solid rgba(139, 0, 0, 0.3);
+        }
+
+        .platform-btn.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .platform-btn:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 25px rgba(178, 34, 34, 0.3);
+            border-color: rgba(178, 34, 34, 0.6);
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .fade-in.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(1deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        .newsletter-input {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(178, 34, 34, 0.5);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: #B22222;
+            box-shadow: 0 0 0 3px rgba(178, 34, 34, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: linear-gradient(145deg, #0D0618 0%, #1a0b2e 100%);
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .stats-number {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #B22222 0%, #8B0000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 5px 15px rgba(178, 34, 34, 0.3));
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #8B0000, #B22222);
+            z-index: 1000;
+            transition: width 0.2s ease;
+        }
+
+        .stagger-animate>* {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(178, 34, 34, 0.5), transparent);
+            margin: 4rem auto;
+            width: 80%;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 4px 20px rgba(178, 34, 34, 0.6);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 8px 25px rgba(178, 34, 34, 0.8);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 4px 20px rgba(178, 34, 34, 0.6);
+            }
+        }
+
+        .gold-accent {
+            color: #FFD700;
+        }
+
+        .silver-accent {
+            color: #C0C0C0;
+        }
+
+        .muted-green {
+            color: #6A9955;
+        }
+
+        .bg-dark-purple {
+            background-color: #1a0b2e;
+        }
+
+        .hover-crimson:hover {
+            color: #B22222;
+        }
+
+        .border-crimson {
+            border-color: #B22222;
+        }
+    </style>
+</head>
+
+<body class="text-gray-200">
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator"></div>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-effect">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="font-title text-2xl font-bold text-white tracking-wider flex items-center">
+                <span class="gold-accent mr-2"><i class="fas fa-crown"></i></span> SILKSONG
+            </h1>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#about" class="hover-crimson transition-colors duration-300">The Game</a>
+                <a href="#features" class="hover-crimson transition-colors duration-300">Features</a>
+                <a href="#gallery" class="hover-crimson transition-colors duration-300">Gallery</a>
+                <a href="#download" class="hover-crimson transition-colors duration-300">Download</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed inset-0 z-40 bg-opacity-95 md:hidden">
+        <div class="flex justify-end p-6">
+            <button id="close-menu" class="text-white text-2xl"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="flex flex-col items-center justify-center h-full space-y-10">
+            <a href="#about"
+                class="text-2xl font-title text-white hover-crimson transition-colors duration-300">The Game</a>
+            <a href="#features"
+                class="text-2xl font-title text-white hover-crimson transition-colors duration-300">Features</a>
+            <a href="#gallery"
+                class="text-2xl font-title text-white hover-crimson transition-colors duration-300">Gallery</a>
+            <a href="#download"
+                class="text-2xl font-title text-white hover-crimson transition-colors duration-300">Download</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <main class="hero-bg">
+        <div class="min-h-screen flex flex-col items-center justify-center pt-20">
+            <div class="text-center fade-in">
+                <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1030300/capsule_616x353.jpg?t=1742776298"
+                    alt="Hollow Knight Silksong Logo" class="mx-auto mb-4 w-full max-w-2xl px-4 animate-float"
+                    onerror="this.onerror=null;this.src='https://placehold.co/800x200/0D0618/silver?text=Silksong+Logo';">
+                <h2 class="text-2xl md:text-4xl font-title silver-accent mb-8 tracking-widest">A Kingdom Haunted by Silk
+                    and Song</h2>
+                <a href="#download"
+                    class="btn-primary inline-block text-white font-bold font-title tracking-wider text-lg py-4 px-12 rounded-lg shadow-lg pulse">
+                    <i class="fas fa-download mr-2"></i> DOWNLOAD FOR FREE
+                </a>
+                <div class="mt-6 text-sm silver-accent">
+                    <i class="fas fa-star mr-1 gold-accent"></i>
+                    <i class="fas fa-star mr-1 gold-accent"></i>
+                    <i class="fas fa-star mr-1 gold-accent"></i>
+                    <i class="fas fa-star mr-1 gold-accent"></i>
+                    <i class="fas fa-star mr-1 gold-accent"></i>
+                    <span class="ml-2">Rated 5/5 by critics worldwide</span>
+                </div>
+            </div>
+            <div class="absolute bottom-10 animate-bounce">
+                <a href="#about" class="silver-accent text-4xl"><i class="fas fa-chevron-down"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 sm:py-32">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center fade-in">
+                <h2 class="font-title text-4xl md:text-5xl font-bold silver-accent mb-6">Play as Hornet, Princess-Protector
+                    of Hallownest</h2>
+                <p class="text-lg silver-accent leading-relaxed">
+                    Explore a whole new kingdom haunted by silk and song. As the lethal hunter Hornet, journey to
+                    all-new lands, discover new powers, battle vast hordes of bugs and beasts and uncover ancient
+                    secrets tied to your nature and your past.
+                </p>
+                <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center stagger-animate">
+                    <div>
+                        <div class="stats-number">100+</div>
+                        <div class="silver-accent">Enemies</div>
+                    </div>
+                    <div>
+                        <div class="stats-number">30+</div>
+                        <div class="silver-accent">Bosses</div>
+                    </div>
+                    <div>
+                        <div class="stats-number">150+</div>
+                        <div class="silver-accent">Abilities</div>
+                    </div>
+                    <div>
+                        <div class="stats-number">40+</div>
+                        <div class="silver-accent">Hours of gameplay</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 sm:py-32 bg-dark-purple bg-opacity-40">
+        <div class="container mx-auto px-6">
+            <h2 class="font-title text-4xl md:text-5xl font-bold silver-accent text-center mb-16 fade-in">Unleash Your
+                Skills</h2>
+            <div class="grid md:grid-cols-3 gap-12 mt-10 text-center">
+                <!-- Feature 1 -->
+                <div class="feature-card flex flex-col items-center p-8 rounded-xl">
+                    <div
+                        class="w-20 h-20 mb-4 flex items-center justify-center rounded-full bg-red-900 bg-opacity-30">
+                        <i class="fas fa-map-marked-alt text-4xl silver-accent"></i>
+                    </div>
+                    <h3 class="font-title text-2xl font-bold silver-accent mb-2">Vast, Gilded Kingdom</h3>
+                    <p class="silver-accent">Ascend to the shining citadel at the top of the world. Explore coral
+                        forests, mossy grottos, and misty moors on a deadly pilgrimage.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="feature-card flex flex-col items-center p-8 rounded-xl">
+                    <div
+                        class="w-20 h-20 mb-4 flex items-center justify-center rounded-full bg-red-900 bg-opacity-30">
+                        <i class="fas fa-fist-raised text-4xl silver-accent"></i>
+                    </div>
+                    <h3 class="font-title text-2xl font-bold silver-accent mb-2">Lethal Acrobatic Action</h3>
+                    <p class="silver-accent">Wield a whole new suite of deadly moves. Dance between foes in beautiful,
+                        deadly combat and unleash your silk powers.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="feature-card flex flex-col items-center p-8 rounded-xl">
+                    <div
+                        class="w-20 h-20 mb-4 flex items-center justify-center rounded-full bg-red-900 bg-opacity-30">
+                        <i class="fas fa-tools text-4xl silver-accent"></i>
+                    </div>
+                    <h3 class="font-title text-2xl font-bold silver-accent mb-2">Crafting and Tools</h3>
+                    <p class="silver-accent">Master an ever-expanding arsenal of weapons, traps, and mechanisms to
+                        confound your enemies and explore new heights.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 sm:py-32">
+        <div class="container mx-auto px-6">
+            <h2 class="font-title text-4xl md:text-5xl font-bold silver-accent text-center mb-4 fade-in">Glimpses of
+                Pharloom</h2>
+            <p class="text-center silver-accent mb-12 fade-in">Explore the beautiful and dangerous world of Silksong</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-animate">
+                <img src="https://static1.thegamerimages.com/wordpress/wp-content/uploads/2025/04/hornet-sat-on-a-bench-in-a-town-square.jpg"
+                    alt="Silksong Screenshot 1" class="gallery-img rounded-lg shadow-lg w-full h-full object-cover"
+                    onerror="this.onerror=null;this.src='https://placehold.co/600x400/0D0618/silver?text=Scene+1';">
+                <img src="https://nintendoeverything.com/wp-content/uploads/Why-Hollow-Knight-Silksong-took-so-long.jpg"
+                    alt="Silksong Screenshot 2" class="gallery-img rounded-lg shadow-lg w-full h-full object-cover"
+                    onerror="this.onerror=null;this.src='https://placehold.co/600x400/0D0618/silver?text=Scene+2';">
+                <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2025/07/hollow-knight-silksong-hornet-standing-in-a-green-location.jpg"
+                    alt="Silksong Screenshot 3" class="gallery-img rounded-lg shadow-lg w-full h-full object-cover"
+                    onerror="this.onerror=null;this.src='https://placehold.co/600x400/0D0618/silver?text=Scene+3';">
+                <img src="https://d1lss44hh2trtw.cloudfront.net/assets/article/2022/06/12/hollow-knight-silksong-gets-new-gameplay-trailer-coming-to-game-pass_feature.jpg"
+                    alt="Silksong Screenshot 4" class="gallery-img rounded-lg shadow-lg w-full h-full object-cover"
+                    onerror="this.onerror=null;this.src='https://placehold.co/600x400/0D0618/silver?text=Scene+4';">
+                <img src="https://s.yimg.com/ny/api/res/1.2/u31qKiAg2xtlfrI1LXnucQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTU0MA--/https://media.zenfs.com/en/gamesradar_237/c936e75cc326b3ef38f7c6ac161bb8a8"
+                    alt="Silksong Screenshot 5" class="gallery-img rounded-lg shadow-lg w-full h-full object-cover"
+                    onerror="this.onerror=null;this.src='https://placehold.co/600x400/0D0618/silver?text=Scene+5';">
+                <img src="https://cdn.holdtoreset.com/wp-content/uploads/2022/06/12163835/hollow-knight-silksong-new-trailer.jpg"
+                    alt="Silksong Screenshot 6" class="gallery-img rounded-lg shadow-lg w-full h-full object-cover"
+                    onerror="this.onerror=null;this.src='https://placehold.co/600x400/0D0618/silver?text=Scene+6';">
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Download Section -->
+    <section id="download" class="py-20 sm:py-32 bg-dark-purple bg-opacity-40">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="font-title text-4xl md:text-5xl font-bold silver-accent mb-4 fade-in">Download For Free</h2>
+            <p class="text-lg silver-accent mb-10 max-w-2xl mx-auto fade-in">Experience the epic adventure of Hornet in
+                Hollow Knight: Silksong. Download now and begin your journey through the haunted kingdom of Pharloom.
+            </p>
+
+            <div class="flex flex-wrap justify-center items-center gap-6 mb-16 stagger-animate">
+                <!-- Windows -->
+                <a href="#"
+                    class="platform-btn flex flex-col items-center gap-3 text-white font-semibold py-4 px-8 rounded-lg">
+                    <i class="fab fa-windows text-4xl muted-green"></i>
+                    <span>Windows</span>
+                    <span class="text-xs silver-accent">(Direct Download)</span>
+                </a>
+                <!-- Mac -->
+                <a href="#"
+                    class="platform-btn flex flex-col items-center gap-3 text-white font-semibold py-4 px-8 rounded-lg">
+                    <i class="fab fa-apple text-4xl silver-accent"></i>
+                    <span>Mac OS</span>
+                    <span class="text-xs silver-accent">(DMG File)</span>
+                </a>
+                <!-- Linux -->
+                <a href="#"
+                    class="platform-btn flex flex-col items-center gap-3 text-white font-semibold py-4 px-8 rounded-lg">
+                    <i class="fab fa-linux text-4xl gold-accent"></i>
+                    <span>Linux</span>
+                    <span class="text-xs silver-accent">(AppImage)</span>
+                </a>
+            </div>
+
+            <div class="max-w-2xl mx-auto bg-dark-purple bg-opacity-50 p-8 rounded-xl fade-in">
+                <h3 class="text-2xl font-bold silver-accent mb-4">System Requirements</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                    <div>
+                        <h4 class="muted-green font-semibold mb-2">Minimum</h4>
+                        <ul class="silver-accent text-sm space-y-1">
+                            <li><i class="fas fa-microchip mr-2 muted-green"></i> Intel Core i5-2300 or AMD FX-4350</li>
+                            <li><i class="fas fa-memory mr-2 muted-green"></i> 4 GB RAM</li>
+                            <li><i class="fas fa-desktop mr-2 muted-green"></i> NVIDIA GeForce GTX 550 Ti or AMD Radeon HD 6770</li>
+                            <li><i class="fas fa-hdd mr-2 muted-green"></i> 10 GB available space</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="muted-green font-semibold mb-2">Recommended</h4>
+                        <ul class="silver-accent text-sm space-y-1">
+                            <li><i class="fas fa-microchip mr-2 muted-green"></i> Intel Core i5-3470 or AMD FX-6300</li>
+                            <li><i class="fas fa-memory mr-2 muted-green"></i> 8 GB RAM</li>
+                            <li><i class="fas fa-desktop mr-2 muted-green"></i> NVIDIA GeForce GTX 660 or AMD Radeon HD 7970</li>
+                            <li><i class="fas fa-hdd mr-2 muted-green"></i> 10 GB available space</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-70 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="font-title text-xl font-bold silver-accent mb-4">SILKSONG</h4>
+                    <p class="silver-accent">An epic adventure awaits in the haunted kingdom of Pharloom. Play as
+                        Hornet, princess-protector of Hallownest.</p>
+                </div>
+                <div>
+                    <h4 class="font-title text-xl font-bold silver-accent mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about"
+                                class="silver-accent hover-crimson transition-colors duration-300">About the
+                                Game</a></li>
+                        <li><a href="#features"
+                                class="silver-accent hover-crimson transition-colors duration-300">Features</a>
+                        </li>
+                        <li><a href="#gallery"
+                                class="silver-accent hover-crimson transition-colors duration-300">Gallery</a>
+                        </li>
+                        <li><a href="#download"
+                                class="silver-accent hover-crimson transition-colors duration-300">Download</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-crimson mt-8 pt-8 text-center silver-accent">
+                <p>&copy; 2024 Team Cherry. All rights reserved.</p>
+                <p class="mt-2 text-sm">"Hollow Knight" and "Hollow Knight: Silksong" are trademarks of Team Cherry.
+                    This is a fan-made concept page.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        document.getElementById('mobile-menu-button').addEventListener('click', function () {
+            document.getElementById('mobile-menu').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+
+        document.getElementById('close-menu').addEventListener('click', function () {
+            document.getElementById('mobile-menu').classList.remove('open');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Scroll progress indicator
+        window.addEventListener('scroll', function () {
+            const winHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollPercent = (scrollTop / (docHeight - winHeight)) * 100;
+            document.querySelector('.scroll-indicator').style.width = scrollPercent + '%';
+        });
+
+        // Enhanced scroll animation with Intersection Observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+
+                    // For stagger animations
+                    if (entry.target.classList.contains('stagger-animate')) {
+                        const children = entry.target.children;
+                        Array.from(children).forEach((child, index) => {
+                            setTimeout(() => {
+                                child.style.opacity = "1";
+                                child.style.transform = "translateY(0)";
+                            }, index * 150);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animation classes
+        document.querySelectorAll('.fade-in, .feature-card, .platform-btn, .stagger-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Initialize animations on page load for elements in view
+        window.addEventListener('load', function () {
+            document.querySelectorAll('.fade-in, .feature-card, .platform-btn').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.classList.add('animate');
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
