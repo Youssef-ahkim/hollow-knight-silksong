@@ -234,6 +234,21 @@
         .border-crimson {
             border-color: #B22222;
         }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 39;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+        }
     </style>
 </head>
 
@@ -241,6 +256,9 @@
 
     <!-- Scroll Indicator -->
     <div class="scroll-indicator"></div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
 
     <!-- Header -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-effect">
@@ -270,13 +288,14 @@
         </div>
         <div class="flex flex-col items-center justify-center h-full space-y-10">
             <a href="#about"
-                class="text-2xl font-title text-white hover-crimson transition-colors duration-300">The Game</a>
+                class="text-2xl font-title text-white hover-crimson transition-colors duration-300 mobile-nav-link">The
+                Game</a>
             <a href="#features"
-                class="text-2xl font-title text-white hover-crimson transition-colors duration-300">Features</a>
+                class="text-2xl font-title text-white hover-crimson transition-colors duration-300 mobile-nav-link">Features</a>
             <a href="#gallery"
-                class="text-2xl font-title text-white hover-crimson transition-colors duration-300">Gallery</a>
+                class="text-2xl font-title text-white hover-crimson transition-colors duration-300 mobile-nav-link">Gallery</a>
             <a href="#download"
-                class="text-2xl font-title text-white hover-crimson transition-colors duration-300">Download</a>
+                class="text-2xl font-title text-white hover-crimson transition-colors duration-300 mobile-nav-link">Download</a>
         </div>
     </div>
 
@@ -302,9 +321,7 @@
                     <span class="ml-2">Rated 5/5 by critics worldwide</span>
                 </div>
             </div>
-            <div class="absolute bottom-10 animate-bounce">
-                <a href="#about" class="silver-accent text-4xl"><i class="fas fa-chevron-down"></i></a>
-            </div>
+
         </div>
     </main>
 
@@ -312,7 +329,8 @@
     <section id="about" class="py-20 sm:py-32">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto text-center fade-in">
-                <h2 class="font-title text-4xl md:text-5xl font-bold silver-accent mb-6">Play as Hornet, Princess-Protector
+                <h2 class="font-title text-4xl md:text-5xl font-bold silver-accent mb-6">Play as Hornet,
+                    Princess-Protector
                     of Hallownest</h2>
                 <p class="text-lg silver-accent leading-relaxed">
                     Explore a whole new kingdom haunted by silk and song. As the lethal hunter Hornet, journey to
@@ -351,8 +369,7 @@
             <div class="grid md:grid-cols-3 gap-12 mt-10 text-center">
                 <!-- Feature 1 -->
                 <div class="feature-card flex flex-col items-center p-8 rounded-xl">
-                    <div
-                        class="w-20 h-20 mb-4 flex items-center justify-center rounded-full bg-red-900 bg-opacity-30">
+                    <div class="w-20 h-20 mb-4 flex items-center justify-center rounded-full bg-red-900 bg-opacity-30">
                         <i class="fas fa-map-marked-alt text-4xl silver-accent"></i>
                     </div>
                     <h3 class="font-title text-2xl font-bold silver-accent mb-2">Vast, Gilded Kingdom</h3>
@@ -361,8 +378,7 @@
                 </div>
                 <!-- Feature 2 -->
                 <div class="feature-card flex flex-col items-center p-8 rounded-xl">
-                    <div
-                        class="w-20 h-20 mb-4 flex items-center justify-center rounded-full bg-red-900 bg-opacity-30">
+                    <div class="w-20 h-20 mb-4 flex items-center justify-center rounded-full bg-red-900 bg-opacity-30">
                         <i class="fas fa-fist-raised text-4xl silver-accent"></i>
                     </div>
                     <h3 class="font-title text-2xl font-bold silver-accent mb-2">Lethal Acrobatic Action</h3>
@@ -371,8 +387,7 @@
                 </div>
                 <!-- Feature 3 -->
                 <div class="feature-card flex flex-col items-center p-8 rounded-xl">
-                    <div
-                        class="w-20 h-20 mb-4 flex items-center justify-center rounded-full bg-red-900 bg-opacity-30">
+                    <div class="w-20 h-20 mb-4 flex items-center justify-center rounded-full bg-red-900 bg-opacity-30">
                         <i class="fas fa-tools text-4xl silver-accent"></i>
                     </div>
                     <h3 class="font-title text-2xl font-bold silver-accent mb-2">Crafting and Tools</h3>
@@ -456,7 +471,8 @@
                         <ul class="silver-accent text-sm space-y-1">
                             <li><i class="fas fa-microchip mr-2 muted-green"></i> Intel Core i5-2300 or AMD FX-4350</li>
                             <li><i class="fas fa-memory mr-2 muted-green"></i> 4 GB RAM</li>
-                            <li><i class="fas fa-desktop mr-2 muted-green"></i> NVIDIA GeForce GTX 550 Ti or AMD Radeon HD 6770</li>
+                            <li><i class="fas fa-desktop mr-2 muted-green"></i> NVIDIA GeForce GTX 550 Ti or AMD Radeon
+                                HD 6770</li>
                             <li><i class="fas fa-hdd mr-2 muted-green"></i> 10 GB available space</li>
                         </ul>
                     </div>
@@ -465,7 +481,8 @@
                         <ul class="silver-accent text-sm space-y-1">
                             <li><i class="fas fa-microchip mr-2 muted-green"></i> Intel Core i5-3470 or AMD FX-6300</li>
                             <li><i class="fas fa-memory mr-2 muted-green"></i> 8 GB RAM</li>
-                            <li><i class="fas fa-desktop mr-2 muted-green"></i> NVIDIA GeForce GTX 660 or AMD Radeon HD 7970</li>
+                            <li><i class="fas fa-desktop mr-2 muted-green"></i> NVIDIA GeForce GTX 660 or AMD Radeon HD
+                                7970</li>
                             <li><i class="fas fa-hdd mr-2 muted-green"></i> 10 GB available space</li>
                         </ul>
                     </div>
@@ -489,8 +506,8 @@
                 <div>
                     <h4 class="font-title text-xl font-bold silver-accent mb-4">Quick Links</h4>
                     <ul class="space-y-2">
-                        <li><a href="#about"
-                                class="silver-accent hover-crimson transition-colors duration-300">About the
+                        <li><a href="#about" class="silver-accent hover-crimson transition-colors duration-300">About
+                                the
                                 Game</a></li>
                         <li><a href="#features"
                                 class="silver-accent hover-crimson transition-colors duration-300">Features</a>
@@ -514,14 +531,31 @@
 
     <script>
         // Mobile menu functionality
-        document.getElementById('mobile-menu-button').addEventListener('click', function () {
-            document.getElementById('mobile-menu').classList.add('open');
-            document.body.style.overflow = 'hidden';
-        });
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-        document.getElementById('close-menu').addEventListener('click', function () {
-            document.getElementById('mobile-menu').classList.remove('open');
+        function openMobileMenu() {
+            mobileMenu.classList.add('open');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            mobileMenuOverlay.classList.remove('active');
             document.body.style.overflow = 'auto';
+        }
+
+        mobileMenuButton.addEventListener('click', openMobileMenu);
+        closeMenuButton.addEventListener('click', closeMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+        // Close menu when clicking on navigation links
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
         });
 
         // Scroll progress indicator
@@ -589,6 +623,13 @@
                     el.classList.add('animate');
                 }
             });
+        });
+
+        // Close menu when ESC key is pressed
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+                closeMobileMenu();
+            }
         });
     </script>
 
