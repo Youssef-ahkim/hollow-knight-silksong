@@ -11,6 +11,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -249,6 +253,39 @@
         .mobile-menu-overlay.active {
             display: block;
         }
+
+        /* New animation classes for GSAP */
+        .gsap-fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .gsap-scale-in {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .gsap-slide-in-left {
+            opacity: 0;
+            transform: translateX(-100px);
+        }
+
+        .gsap-slide-in-right {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+
+        .gsap-rotate-in {
+            opacity: 0;
+            transform: rotate(-10deg) scale(0.8);
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(178, 34, 34, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+        }
     </style>
 </head>
 
@@ -257,22 +294,29 @@
     <!-- Scroll Indicator -->
     <div class="scroll-indicator"></div>
 
+    <!-- Particle Container -->
+    <div id="particle-container"></div>
+
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu-overlay" class="mobile-menu-overlay"></div>
 
     <!-- Header -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-effect">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="font-title text-2xl font-bold text-white tracking-wider flex items-center">
+            <h1 class="font-title text-2xl font-bold text-white tracking-wider flex items-center gsap-scale-in">
                 <span class="gold-accent mr-2"><i class="fas fa-crown"></i></span> SILKSONG
             </h1>
             <nav class="hidden md:flex space-x-8">
-                <a href="#about" class="hover-crimson transition-colors duration-300">The Game</a>
-                <a href="#features" class="hover-crimson transition-colors duration-300">Features</a>
-                <a href="#gallery" class="hover-crimson transition-colors duration-300">Gallery</a>
-                <a href="#download" class="hover-crimson transition-colors duration-300">Download</a>
+                <a href="#about" class="hover-crimson transition-colors duration-300 gsap-fade-in" data-delay="0.1">The
+                    Game</a>
+                <a href="#features" class="hover-crimson transition-colors duration-300 gsap-fade-in"
+                    data-delay="0.2">Features</a>
+                <a href="#gallery" class="hover-crimson transition-colors duration-300 gsap-fade-in"
+                    data-delay="0.3">Gallery</a>
+                <a href="#download" class="hover-crimson transition-colors duration-300 gsap-fade-in"
+                    data-delay="0.4">Download</a>
             </nav>
-            <button id="mobile-menu-button" class="md:hidden text-white">
+            <button id="mobile-menu-button" class="md:hidden text-white gsap-fade-in" data-delay="0.5">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
@@ -302,17 +346,19 @@
     <!-- Hero Section -->
     <main class="hero-bg">
         <div class="min-h-screen flex flex-col items-center justify-center pt-20">
-            <div class="text-center fade-in">
+            <div class="text-center">
                 <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1030300/capsule_616x353.jpg?t=1742776298"
-                    alt="Hollow Knight Silksong Logo" class="mx-auto mb-4 w-full max-w-2xl px-4 animate-float"
+                    alt="Hollow Knight Silksong Logo" class="mx-auto mb-4 w-full max-w-2xl px-4 gsap-scale-in"
                     onerror="this.onerror=null;this.src='https://placehold.co/800x200/0D0618/silver?text=Silksong+Logo';">
-                <h2 class="text-2xl md:text-4xl font-title silver-accent mb-8 tracking-widest">A Kingdom Haunted by Silk
+                <h2 class="text-2xl md:text-4xl font-title silver-accent mb-8 tracking-widest gsap-fade-in"
+                    data-delay="0.2">A Kingdom Haunted by Silk
                     and Song</h2>
                 <a href="#download"
-                    class="btn-primary inline-block text-white font-bold font-title tracking-wider text-lg py-4 px-12 rounded-lg shadow-lg pulse">
+                    class="btn-primary inline-block text-white font-bold font-title tracking-wider text-lg py-4 px-12 rounded-lg shadow-lg pulse gsap-fade-in"
+                    data-delay="0.4">
                     <i class="fas fa-download mr-2"></i> DOWNLOAD FOR FREE
                 </a>
-                <div class="mt-6 text-sm silver-accent">
+                <div class="mt-6 text-sm silver-accent gsap-fade-in" data-delay="0.6">
                     <i class="fas fa-star mr-1 gold-accent"></i>
                     <i class="fas fa-star mr-1 gold-accent"></i>
                     <i class="fas fa-star mr-1 gold-accent"></i>
@@ -328,29 +374,29 @@
     <!-- About Section -->
     <section id="about" class="py-20 sm:py-32">
         <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center fade-in">
-                <h2 class="font-title text-4xl md:text-5xl font-bold silver-accent mb-6">Play as Hornet,
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="font-title text-4xl md:text-5xl font-bold silver-accent mb-6 gsap-fade-in">Play as Hornet,
                     Princess-Protector
                     of Hallownest</h2>
-                <p class="text-lg silver-accent leading-relaxed">
+                <p class="text-lg silver-accent leading-relaxed gsap-fade-in" data-delay="0.2">
                     Explore a whole new kingdom haunted by silk and song. As the lethal hunter Hornet, journey to
                     all-new lands, discover new powers, battle vast hordes of bugs and beasts and uncover ancient
                     secrets tied to your nature and your past.
                 </p>
                 <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center stagger-animate">
-                    <div>
+                    <div class="gsap-fade-in" data-delay="0.1">
                         <div class="stats-number">100+</div>
                         <div class="silver-accent">Enemies</div>
                     </div>
-                    <div>
+                    <div class="gsap-fade-in" data-delay="0.2">
                         <div class="stats-number">30+</div>
                         <div class="silver-accent">Bosses</div>
                     </div>
-                    <div>
+                    <div class="gsap-fade-in" data-delay="0.3">
                         <div class="stats-number">150+</div>
                         <div class="silver-accent">Abilities</div>
                     </div>
-                    <div>
+                    <div class="gsap-fade-in" data-delay="0.4">
                         <div class="stats-number">40+</div>
                         <div class="silver-accent">Hours of gameplay</div>
                     </div>
@@ -364,11 +410,12 @@
     <!-- Features Section -->
     <section id="features" class="py-20 sm:py-32 bg-dark-purple bg-opacity-40">
         <div class="container mx-auto px-6">
-            <h2 class="font-title text-4xl md:text-5xl font-bold silver-accent text-center mb-16 fade-in">Unleash Your
+            <h2 class="font-title text-4xl md:text-5xl font-bold silver-accent text-center mb-16 gsap-fade-in">Unleash
+                Your
                 Skills</h2>
             <div class="grid md:grid-cols-3 gap-12 mt-10 text-center">
                 <!-- Feature 1 -->
-                <div class="feature-card flex flex-col items-center p-8 rounded-xl">
+                <div class="feature-card flex flex-col items-center p-8 rounded-xl gsap-slide-in-left">
                     <div class="w-20 h-20 mb-4 flex items-center justify-center rounded-full bg-red-900 bg-opacity-30">
                         <i class="fas fa-map-marked-alt text-4xl silver-accent"></i>
                     </div>
@@ -377,7 +424,7 @@
                         forests, mossy grottos, and misty moors on a deadly pilgrimage.</p>
                 </div>
                 <!-- Feature 2 -->
-                <div class="feature-card flex flex-col items-center p-8 rounded-xl">
+                <div class="feature-card flex flex-col items-center p-8 rounded-xl gsap-fade-in" data-delay="0.2">
                     <div class="w-20 h-20 mb-4 flex items-center justify-center rounded-full bg-red-900 bg-opacity-30">
                         <i class="fas fa-fist-raised text-4xl silver-accent"></i>
                     </div>
@@ -386,7 +433,7 @@
                         deadly combat and unleash your silk powers.</p>
                 </div>
                 <!-- Feature 3 -->
-                <div class="feature-card flex flex-col items-center p-8 rounded-xl">
+                <div class="feature-card flex flex-col items-center p-8 rounded-xl gsap-slide-in-right">
                     <div class="w-20 h-20 mb-4 flex items-center justify-center rounded-full bg-red-900 bg-opacity-30">
                         <i class="fas fa-tools text-4xl silver-accent"></i>
                     </div>
@@ -403,9 +450,11 @@
     <!-- Gallery Section -->
     <section id="gallery" class="py-20 sm:py-32">
         <div class="container mx-auto px-6">
-            <h2 class="font-title text-4xl md:text-5xl font-bold silver-accent text-center mb-4 fade-in">Glimpses of
+            <h2 class="font-title text-4xl md:text-5xl font-bold silver-accent text-center mb-4 gsap-fade-in">Glimpses
+                of
                 Pharloom</h2>
-            <p class="text-center silver-accent mb-12 fade-in">Explore the beautiful and dangerous world of Silksong</p>
+            <p class="text-center silver-accent mb-12 gsap-fade-in" data-delay="0.2">Explore the beautiful and dangerous
+                world of Silksong</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-animate">
                 <img src="https://static1.thegamerimages.com/wordpress/wp-content/uploads/2025/04/hornet-sat-on-a-bench-in-a-town-square.jpg"
                     alt="Silksong Screenshot 1" class="gallery-img rounded-lg shadow-lg w-full h-full object-cover"
@@ -434,36 +483,40 @@
     <!-- Download Section -->
     <section id="download" class="py-20 sm:py-32 bg-dark-purple bg-opacity-40">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="font-title text-4xl md:text-5xl font-bold silver-accent mb-4 fade-in">Download For Free</h2>
-            <p class="text-lg silver-accent mb-10 max-w-2xl mx-auto fade-in">Experience the epic adventure of Hornet in
+            <h2 class="font-title text-4xl md:text-5xl font-bold silver-accent mb-4 gsap-fade-in">Download For Free</h2>
+            <p class="text-lg silver-accent mb-10 max-w-2xl mx-auto gsap-fade-in" data-delay="0.2">Experience the epic
+                adventure of Hornet in
                 Hollow Knight: Silksong. Download now and begin your journey through the haunted kingdom of Pharloom.
             </p>
 
             <div class="flex flex-wrap justify-center items-center gap-6 mb-16 stagger-animate">
                 <!-- Windows -->
                 <a href="#"
-                    class="platform-btn flex flex-col items-center gap-3 text-white font-semibold py-4 px-8 rounded-lg">
+                    class="platform-btn flex flex-col items-center gap-3 text-white font-semibold py-4 px-8 rounded-lg gsap-fade-in"
+                    data-delay="0.1">
                     <i class="fab fa-windows text-4xl muted-green"></i>
                     <span>Windows</span>
                     <span class="text-xs silver-accent">(Direct Download)</span>
                 </a>
                 <!-- Mac -->
                 <a href="#"
-                    class="platform-btn flex flex-col items-center gap-3 text-white font-semibold py-4 px-8 rounded-lg">
+                    class="platform-btn flex flex-col items-center gap-3 text-white font-semibold py-4 px-8 rounded-lg gsap-fade-in"
+                    data-delay="0.2">
                     <i class="fab fa-apple text-4xl silver-accent"></i>
                     <span>Mac OS</span>
                     <span class="text-xs silver-accent">(DMG File)</span>
                 </a>
                 <!-- Linux -->
                 <a href="#"
-                    class="platform-btn flex flex-col items-center gap-3 text-white font-semibold py-4 px-8 rounded-lg">
+                    class="platform-btn flex flex-col items-center gap-3 text-white font-semibold py-4 px-8 rounded-lg gsap-fade-in"
+                    data-delay="0.3">
                     <i class="fab fa-linux text-4xl gold-accent"></i>
                     <span>Linux</span>
                     <span class="text-xs silver-accent">(AppImage)</span>
                 </a>
             </div>
 
-            <div class="max-w-2xl mx-auto bg-dark-purple bg-opacity-50 p-8 rounded-xl fade-in">
+            <div class="max-w-2xl mx-auto bg-dark-purple bg-opacity-50 p-8 rounded-xl gsap-fade-in" data-delay="0.4">
                 <h3 class="text-2xl font-bold silver-accent mb-4">System Requirements</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
                     <div>
@@ -498,12 +551,12 @@
     <footer class="bg-black bg-opacity-70 py-12">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
+                <div class="gsap-fade-in">
                     <h4 class="font-title text-xl font-bold silver-accent mb-4">SILKSONG</h4>
                     <p class="silver-accent">An epic adventure awaits in the haunted kingdom of Pharloom. Play as
                         Hornet, princess-protector of Hallownest.</p>
                 </div>
-                <div>
+                <div class="gsap-fade-in" data-delay="0.2">
                     <h4 class="font-title text-xl font-bold silver-accent mb-4">Quick Links</h4>
                     <ul class="space-y-2">
                         <li><a href="#about" class="silver-accent hover-crimson transition-colors duration-300">About
@@ -521,7 +574,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="border-t border-crimson mt-8 pt-8 text-center silver-accent">
+            <div class="border-t border-crimson mt-8 pt-8 text-center silver-accent gsap-fade-in" data-delay="0.4">
                 <p>&copy; 2024 Team Cherry. All rights reserved.</p>
                 <p class="mt-2 text-sm">"Hollow Knight" and "Hollow Knight: Silksong" are trademarks of Team Cherry.
                     This is a fan-made concept page.</p>
@@ -530,6 +583,176 @@
     </footer>
 
     <script>
+        // Register ScrollTrigger plugin
+        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+        // Initialize GSAP animations
+        document.addEventListener('DOMContentLoaded', function () {
+            // Header animation
+            gsap.to('.glass-effect', {
+                scrollTrigger: {
+                    trigger: 'header',
+                    start: 'top top',
+                    end: '+=100',
+                    scrub: true
+                },
+                backgroundColor: 'rgba(13, 6, 24, 0.95)',
+                backdropFilter: 'blur(16px)',
+                ease: 'power2.out'
+            });
+
+            // Logo animation
+            gsap.to('.gsap-scale-in', {
+                opacity: 1,
+                scale: 1,
+                duration: 1.2,
+                ease: 'back.out(1.7)',
+                stagger: 0.1
+            });
+
+            // Navigation items animation
+            gsap.to('.gsap-fade-in', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                stagger: 0.15,
+                scrollTrigger: {
+                    trigger: '.gsap-fade-in',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
+            });
+
+            // Feature cards animation with ScrollTrigger
+            gsap.to('.gsap-slide-in-left', {
+                scrollTrigger: {
+                    trigger: '.gsap-slide-in-left',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 1,
+                x: 0,
+                duration: 1,
+                ease: 'power2.out'
+            });
+
+            gsap.to('.gsap-slide-in-right', {
+                scrollTrigger: {
+                    trigger: '.gsap-slide-in-right',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 1,
+                x: 0,
+                duration: 1,
+                ease: 'power2.out'
+            });
+
+            // Gallery images animation
+            gsap.to('.gsap-rotate-in', {
+                scrollTrigger: {
+                    trigger: '.gsap-rotate-in',
+                    start: 'top 90%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 1,
+                rotation: 0,
+                scale: 1,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: 'back.out(1.2)'
+            });
+
+            // Stats counter animation
+            const counters = document.querySelectorAll('.stats-number');
+            counters.forEach(counter => {
+                const target = +counter.innerText.replace('+', '');
+                const duration = 2000; // ms
+                const step = target / (duration / 16); // 60fps
+                let current = 0;
+
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += step;
+                        if (current > target) current = target;
+                        counter.innerText = Math.floor(current) + '+';
+                        requestAnimationFrame(updateCounter);
+                    }
+                };
+
+                ScrollTrigger.create({
+                    trigger: counter,
+                    start: 'top 85%',
+                    onEnter: updateCounter,
+                    once: true
+                });
+            });
+
+            // Create floating particles
+            createParticles();
+
+            // Button hover animations
+            document.querySelectorAll('.btn-primary, .platform-btn').forEach(btn => {
+                btn.addEventListener('mouseenter', () => {
+                    gsap.to(btn, {
+                        scale: 1.05,
+                        y: -5,
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                });
+
+                btn.addEventListener('mouseleave', () => {
+                    gsap.to(btn, {
+                        scale: 1,
+                        y: 0,
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                });
+            });
+        });
+
+        // Create floating particles effect
+        function createParticles() {
+            const container = document.getElementById('particle-container');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+
+                // Random properties
+                const size = Math.random() * 6 + 2;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 10 + 10;
+
+                // Set styles
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}vw`;
+                particle.style.top = `${posY}vh`;
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+
+                // Add to container
+                container.appendChild(particle);
+
+                // Animate with GSAP
+                gsap.to(particle, {
+                    y: '+=40',
+                    x: '+=20',
+                    rotation: Math.random() * 180,
+                    duration: duration,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut',
+                    delay: delay
+                });
+            }
+        }
+
         // Mobile menu functionality
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -541,6 +764,12 @@
             mobileMenu.classList.add('open');
             mobileMenuOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
+
+            // Animate menu items
+            gsap.fromTo('.mobile-nav-link',
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.5, stagger: 0.1 }
+            );
         }
 
         function closeMobileMenu() {
@@ -607,9 +836,13 @@
 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
+                    gsap.to(window, {
+                        duration: 1.2,
+                        scrollTo: {
+                            y: targetElement,
+                            offsetY: 80
+                        },
+                        ease: 'power2.inOut'
                     });
                 }
             });
